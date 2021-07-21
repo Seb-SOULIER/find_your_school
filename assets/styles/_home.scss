@@ -1,0 +1,21 @@
+.page {
+  background-color: $secondary;
+}
+
+.menu-rigth {
+  background-color: $primary;
+  height: 100vh;
+  border-top-right-radius: 150px 50vh;
+  border-bottom-right-radius: 150px 50vh;
+}
+
+.menu-left {
+  background-color: $secondary;
+  height:100vh;
+}
+
+.title {
+  font-family: 'Fuggles', cursive;
+  font-size: 15vh;
+  font-weight: 900;
+}
