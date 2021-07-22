@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ecoles{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" style="height:100vh">
+        <div class="row page">
+            <div class="col-4 menu-rigth text-center">
+                <h1>Ma liste d'école</h1>
+                {% for school in schools.records %}
+                    <div class="col">
+                    <span>
+                        <a class="text-dark" href="{{ path('school_show',{'id':student.id,'school':school.fields.identifiant_de_l_etablissement}) }}">{{ school.fields.nom_etablissement }}</a>
+                    </span></div>
+                {% else %}
+                    Pas d'écoles disponible
+                {% endfor %}
+            </div>
+            <div class="col-8 menu-left">
+                {{ dump(school) }}
+                <form action="" method="post">
+                        <input type="hidden" name="school" value="{{ school.fields.nom_etablissement }}"/>
+                        <input type="hidden" name="schoolId" value="{{ school.fields.identifiant_de_l_etablissement }}"/>
+                        <input type="submit" value="Valider" />
+                </form>
+            </div>
+        </div>-
+    </div>
+{% endblock %}

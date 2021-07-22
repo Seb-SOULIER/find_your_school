@@ -29,6 +29,11 @@ class Cursus
      */
     private $students;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $etablissement;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -77,6 +82,18 @@ class Cursus
                 $student->setCursus(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEtablissement(): ?string
+    {
+        return $this->etablissement;
+    }
+
+    public function setEtablissement(?string $etablissement): self
+    {
+        $this->etablissement = $etablissement;
 
         return $this;
     }

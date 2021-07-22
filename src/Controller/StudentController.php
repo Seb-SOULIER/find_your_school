@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Student;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
+use App\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class StudentController extends AbstractController
     /**
      * @Route("/", name="student_index", methods={"GET","POST"})
      */
-    public function index(Request $request, StudentRepository $studentRepository): Response
+    public function index(Request $request, StudentRepository $studentRepository, Api $api): Response
     {
         $student = new Student();
         $form = $this->createForm(StudentType::class, $student);
@@ -26,6 +27,9 @@ class StudentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $student->setUserId($this->getUser());
+            $locate = $api->localize($form->get('city')->getData());
+            $student->setLatitude($locate[0]['lat']);
+            $student->setLongitude($locate[0]['lon']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($student);
             $entityManager->flush();
