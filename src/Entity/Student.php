@@ -33,7 +33,7 @@ class Student
     private $picture;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $schoolId;
 
@@ -52,6 +52,21 @@ class Student
      * @ORM\JoinColumn(nullable=false)
      */
     private $userId;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitude;
 
     public function getId(): ?int
     {
@@ -94,16 +109,14 @@ class Student
         return $this;
     }
 
-    public function getSchoolId(): ?int
+    public function getSchoolId()
     {
         return $this->schoolId;
     }
 
-    public function setSchoolId(?int $schoolId): self
+    public function setSchoolId($schoolId): void
     {
         $this->schoolId = $schoolId;
-
-        return $this;
     }
 
     public function getSchoolName(): ?string
@@ -138,6 +151,42 @@ class Student
     public function setUserId(?User $userId): self
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
 
         return $this;
     }

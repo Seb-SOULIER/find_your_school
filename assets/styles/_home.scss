@@ -16,6 +16,34 @@
 
 .title {
   font-family: 'Fuggles', cursive;
-  font-size: 15vh;
+  font-size: 13vh;
   font-weight: 900;
+  color: white;
+}
+
+.carteTitle {
+  width: 20vw;
+  padding:1rem;
+  border: 5px groove $secondary;
+  background:$black;
+  -webkit-transform:skew(0,-10deg);
+  -moz-transform:skew(0,-10deg);
+  -o-transform:skew(0,-10deg);
+  tranform:skew(0,-10deg);
+}
+
+.btn-css {
+  font-size: 2rem;
+  border: 5px groove $black;
+  border-radius: 50px 20px;
+}
+
+.image {
+  border-radius: 50px;
+}
+
+@media screen and(max-width:992px){
+  .menu-left{
+    visibility: collapse;
+  }
 }

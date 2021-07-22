@@ -5,16 +5,24 @@
 {% block body %}
 <div class="container-fluid" style="height:100vh">
     <div class="row page">
-        <div class="col-4 menu-rigth text-center">
-            <h1 class="title">Trouve</h1>
-            <h1 class="title">ton</h1>
-            <h1 class="title">école</h1>
-            <a class="btn btn-success" href="{{ path('app_login') }}">Entrer</a>
+        <div class="d-flex flex-column col-lg-4 col-12 menu-rigth">
+        <div class="d-flex flex-column text-center justify-content-center align-items-center h-75">
+            <div class="d-flex flex-column carteTitle w-75">
+                <h1 class="title">Trouve ton école</h1>
+            </div>
         </div>
-        <div class="col-8 menu-left">
-            <h1>
-
-            </h1>
+            <a class="btn btn-secondary btn-css w-50 mx-auto mt-0" href="{{ path('app_login') }}">Entrer</a>
+        </div>
+        <div class="d-flex col-8 menu-left">
+            <div class="d-flex flex-column col-11 m-auto">
+                <img class="image" src="{{ asset('build/images/banner-rentree.jpg') }}" alt="Ecoles"/>
+                <div>
+                    <h2 class="text-light">Bienvenue sur le site ! </h2>
+                    <p class="text-light" style="font-size:1.3rem">
+                        Vous déménagez! Quels écoles seront les plus proches et trouver les infos.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
