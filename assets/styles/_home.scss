@@ -1,3 +1,8 @@
+.body{
+  width:100vw;
+  height: 100vh;
+}
+
 .page {
   background-color: $secondary;
 }
@@ -33,17 +38,105 @@
 }
 
 .btn-css {
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 5px groove $black;
   border-radius: 50px 20px;
+  width: 60%;
+}
+
+.btn-secondary:hover{
+  color:black;
+  font-size: 1.5rem;
+  width: 60%;
+}
+
+.btn-cs {
+  font-size: 1.5rem;
+  border: 5px groove $black;
+  border-radius: 50px 20px;
+  width: 60%;
+}
+
+.btn-color{
+  background-color:$fourth;
+  color:white;
+  font-size: 1.5rem;
+  width: 60%;
 }
 
 .image {
   border-radius: 50px;
+  max-width: 90%;
+}
+
+.card-header {
+  background-color:$secondary;
+}
+
+.font-form {
+  background-color:$tertiary;
+}
+
+.form-check .form-check-input {
+  float:none;
+}
+
+.btn-small{
+  font-size: 1rem;
+  width: 95%;
+}
+.result{
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+  background-image:url("../images/Bernard_Palissy.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin:5vh;
+}
+
+.title-school{
+  background-color: $black;
+  opacity: 0.6;
+}
+
+.card-school{
+  width: 80%;
+  border: 5px groove $white;
+  border-radius: 30px;
+  background-color: $tertiary;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin:5vh;
+}
+
+.menu-at{
+  display:none!important;
+}
+.school-phon{
+  display:none;
+}
+
+h1 h2 {
+  font-family: 'Comfortaa', cursive;
+}
+
+.round{
+  border-radius: 30px;
+}
+
+.dist{
+  font-size: 20px;
+  top:30%;
+  left: 80%;
 }
 
 @media screen and(max-width:992px){
   .menu-left{
-    visibility: collapse;
+    display: none!important;
+  }
+
+  .school-phone{
+    display:none;
   }
 }

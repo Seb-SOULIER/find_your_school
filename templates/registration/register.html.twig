@@ -3,50 +3,55 @@
 {% block title %}Connection{% endblock %}
 
 {% block body %}
-    <div class="container-fluid" style="height:100vh">
-        <div class="row page">
-            <div class="col-4 menu-rigth text-center">
+    <div class="container-fluid h-100">
+        <div class="row page h-100">
+            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth text-center justify-content-center align-items-center">
                 {{ form_start(registrationForm) }}
-                <div class="d-flex align-items-center flex-column">
-                    <h1 class="text-primary my-3">Inscription</h1>
-                    <div class="card text-center shadow">
+                <div class="d-flex flex-column text-center justify-content-center align-items-center h-100 w-100">
+                    <div class="card text-center shadow w-100">
                         <div class="card-header">
-                            <div class="form-control shadow-sm">
+                            <div class="form-control shadow-sm font-form">
                                 <div class="text-danger">
                                     {{ form_errors(registrationForm.login) }}
                                 </div>
-                                    {{ form_label(registrationForm.login) }}
-                                    {{ form_widget(registrationForm.login) }}
+                                {{ form_label(registrationForm.login) }}
+                                {{ form_widget(registrationForm.login) }}
 
                                 <div class="text-danger">
                                     {{ form_errors(registrationForm.email) }}
                                 </div>
-                                    {{ form_label(registrationForm.email) }}
-                                    {{ form_widget(registrationForm.email) }}
+                                {{ form_label(registrationForm.email) }}
+                                {{ form_widget(registrationForm.email) }}
 
                                 <div class="text-danger">
                                     {{ form_errors(registrationForm.plainPassword) }}
                                 </div>
-                                    {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
-                                    {{ form_widget(registrationForm.plainPassword) }}
+                                {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+                                {{ form_widget(registrationForm.plainPassword) }}
 
                                 <div class="mt-2">
                                     {{ form_label(registrationForm.agreeTerms) }}
                                     {{ form_widget(registrationForm.agreeTerms) }}
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <button type="submit" class="btn btn-secondary mt-3">S'inscrire</button>
+                <button class="btn btn-secondary btn-cs mx-auto mt-3" type="submit">S'inscrire</button>
 
                 {{ form_end(registrationForm) }}
 
             </div>
-            <div class="col-8 menu-left">
-                <h1></h1>
+            <div class="d-flex col-lg-8 menu-left">
+                <div class="d-flex flex-column col-11 m-auto">
+                    <img class="image" src="{{ asset('build/images/register.png') }}" alt="Login"/>
+                    <div>
+                        <h2 class="text-light">Identifie toi! </h2>
+                        <p class="text-light" style="font-size:1.3rem">
+                            Créer un compte pour avoir acces à toutes les infos sur l'école choisie.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

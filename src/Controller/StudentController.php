@@ -28,6 +28,10 @@ class StudentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $student->setUserId($this->getUser());
             $locate = $api->localize($form->get('city')->getData());
+            if (empty($locate)) {
+               $locate[0]['lat']=0;
+               $locate[0]['lon']=0;
+            }
             $student->setLatitude($locate[0]['lat']);
             $student->setLongitude($locate[0]['lon']);
             $entityManager = $this->getDoctrine()->getManager();

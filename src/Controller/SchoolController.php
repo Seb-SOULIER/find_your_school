@@ -40,6 +40,12 @@ class SchoolController extends AbstractController
             $student->setSchoolId($request->request->get('schoolId'));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
+            $this->addFlash('success',
+                $student->getSchoolName()
+                . ' ajouter à ' . $student->getLastname()
+                . " " . $student->getFirstname());
+            return $this->redirectToRoute('student_index');
+//            $student['schoolName']. . $student['lastname']. $student['firstname']
         }
 
         return $this->render('school/show.html.twig', [
