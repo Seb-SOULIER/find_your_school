@@ -3,27 +3,76 @@
 {% block title %}Ecoles{% endblock %}
 
 {% block body %}
-    <div class="container-fluid" style="height:100vh">
-        <div class="row page">
-            <div class="col-4 menu-rigth text-center">
-                <h1>Ma liste d'école</h1>
-                {% for school in schools.records %}
-                    <div class="col">
-                    <span>
-                        <a class="text-dark" href="{{ path('school_show',{'id':student.id,'school':school.fields.identifiant_de_l_etablissement}) }}">{{ school.fields.nom_etablissement }}</a>
-                    </span></div>
-                {% else %}
-                    Pas d'écoles disponible
-                {% endfor %}
+    <div class="container-fluid h-100">
+        <div class="row page h-100">
+            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth text-center justify-content-center align-items-center">
+                <div class="card h-50 shadow p-3 w-75" style="border-radius: 30px">
+                    <div class="col h-75 d-flex align-items-center flex-column font-form" style="border-radius: 30px">
+                        <div class="col-md-12">
+                            <h2>Ma liste d'école</h2>
+                        </div>
+                        <div class="col-md-12" style="overflow-y:scroll; height:80%">
+                            {% for school in schools.records %}
+                                <p class="card-title">
+                                    <a class="text-secondary fw-bold" href="{{ path('school_show',{'id':student.id,'school':school.fields.identifiant_de_l_etablissement}) }}">{{ school.fields.nom_etablissement }}</a>
+                                </p>
+                            {% else %}
+                            Pas d'écoles disponible#}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column w-100">
+                    <a class="btn btn-secondary btn-css mx-auto mt-3" href="{{ path('school_list',{'id':student.id}) }}">Retour</a>
+                    <a class="btn btn-color btn-css mx-auto mt-3" href="{{ path('app_logout') }}">Déconnection</a>
+                </div>
             </div>
-            <div class="col-8 menu-left">
-                {{ dump(school) }}
-                <form action="" method="post">
-                        <input type="hidden" name="school" value="{{ school.fields.nom_etablissement }}"/>
-                        <input type="hidden" name="schoolId" value="{{ school.fields.identifiant_de_l_etablissement }}"/>
-                        <input type="submit" value="Valider" />
-                </form>
+            <div class="d-flex col-lg-8 menu-left">
+                <div class="d-flex flex-column col-11 m-5 h-100">
+                    <div class="result h-75">
+                        <div class="d-flex flex-column align-items-center h-100">
+                            <div class="title-school w-100 text-center mt-5">
+                                <h2><span style="color:#FFD700">\\\\ {{ school.fields.nom_etablissement }} ////</span></h2>
+                                <p><span style="color:#FFD700">Ouvert depuis : {{ school.fields.date_ouverture }}</span></p>
+                            </div>
+                            <div class="card-school text-center mt-auto d-flex">
+                                <div class="col-6">
+                                    <h3>informations</h3>
+                                    <p>
+                                        {% if school.fields.libelle_nature is defined %} {{ school.fields.libelle_nature }} <br>{% endif %}
+                                        {% if school.fields.statut_public_prive is defined %} Ecole :{{ school.fields.statut_public_prive }} <br>{% endif %}
+                                        {% if school.fields.hebergement == 1 %} Dortoir : Oui /{% endif %}
+                                        {% if school.fields.hebergement == 0 %} Dortoir : Non /{% endif %}
+                                        {% if school.fields.restauration == 1 %} Restauration : Oui <br>{% endif %}
+                                        {% if school.fields.restauration == 0 %} Restauration : Non <br>{% endif %}
+                                        {% if school.fields.ecole_maternelle is defined %} Ecole Maternelle : oui <br>{% endif %}
+                                        {% if school.fields.nombre_d_eleves is defined %} Nombre d'élèves :{{ school.fields.nombre_d_eleves }} <br>{% endif %}
+                                        {% if school.fields.libelle_academie is defined %} Académie de {{ school.fields.libelle_academie }} <br>{% endif %}
+                                    </p>
+                                </div>
+                                <div class="col-6 h-100">
+                                    <h3>Contact</h3>
+                                    <p>
+                                        {% if school.fields.nom_etablissement is defined %} {{ school.fields.nom_etablissement }} <br> {% endif %}
+                                        {% if school.fields.telephone is defined %} {{ school.fields.telephone }} <br>{% endif %}
+                                        {% if school.fields.adresse_1 is defined %} {{ school.fields.adresse_1 }} <br> {% endif %}
+                                        {% if school.fields.adresse_2 is defined %} {{ school.fields.adresse_2 }} <br> {% endif %}
+                                        {% if school.fields.adresse_3 is defined %} {{ school.fields.adresse_3 }} <br>{% endif %}<br>
+                                        {% if school.fields.mail is defined %} <a style="color: #0d6efd" href="mailto:{{ school.fields.mail }}">{{ school.fields.mail }}</a>{% endif %}
+                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                  <form action="" method="post" class="d-flex align-items-center">
+                    <input type="hidden" name="school" value="{{ school.fields.nom_etablissement }}"/>
+                    <input type="hidden" name="schoolId" value="{{ school.fields.identifiant_de_l_etablissement }}"/>
+                    <input class="btn btn-primary btn-cs mt-0 w-50 mx-auto" type="submit" value="Choisir cette école" />
+                  </form>
+                    </div>
+                </div>
             </div>
-        </div>-
+        </div>
     </div>
 {% endblock %}

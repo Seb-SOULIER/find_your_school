@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
+ * @Vich\Uploadable
  */
 class Student
 {
@@ -29,8 +33,20 @@ class Student
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="picture_file", fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
+
+//    /**
+//     * @ORM\Column(type="Datetime")
+//     */
+//    private DateTimeInterface $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -190,4 +206,29 @@ class Student
 
         return $this;
     }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(File $picture=null): Student
+    {
+        $this->pictureFile = $picture;
+//        if ($picture) {
+//            $this->updatedAt = new DateTime('now');
+//        }
+
+        return $this;
+    }
+
+//    public function getUpdatedAt(): DateTimeInterface
+//    {
+//        return $this->updatedAt;
+//    }
+//
+//    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+//    {
+//        $this->updatedAt = $updatedAt;
+//    }
 }

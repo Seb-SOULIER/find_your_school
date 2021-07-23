@@ -8,18 +8,20 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class StudentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('picture')
+            ->add('pictureFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
+            ])
             ->add('lastname')
             ->add('firstname')
-            ->add('picture')
-//            ->add('school_id')
-//            ->add('school_name')
             ->add('cursus',EntityType::class, [
                 'class' => Cursus::class,
                 'choice_label' => 'name'

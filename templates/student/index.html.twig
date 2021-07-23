@@ -1,44 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Student index{% endblock %}
+{% block title %}Mon Compte{% endblock %}
 
 {% block body %}
-    <div class="container-fluid" style="height:100vh">
-        <div class="row page">
-            <div class="col-4 menu-rigth text-center">
+    <div class="container-fluid h-100">
+        <div class="d-flex flex-column-reverse flex-lg-row page h-100">
+            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth text-center justify-content-center align-items-center">
                 {% include 'student/_form.html.twig' %}
             </div>
-            <div class="col-8 menu-left">
-                <h1>Ma liste d'élève</h1>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Lastname</th>
-                        <th>Firstname</th>
-                        <th>Picture</th>
-                        <th>School_name</th>
-                        <th>actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            <div class="d-flex col-lg-8">
+                <div class="d-flex flex-column col-11 m-auto ">
+                    <h1 class="text-center text-primary">Profils</h1>
+                    <div class="d-flex flex-column flex-lg-row flex-wrap provider-list">
                     {% for student in students %}
-                        <tr>
-                            <td>{{ student.lastname }}</td>
-                            <td>{{ student.firstname }}</td>
-                            <td>{{ student.picture }}</td>
-                            <td>{{ student.schoolName }}</td>
-                            <td>
-                                <a class="text-dark" href="{{ path('school_list',{'id':student.id}) }}">Voir les écoles</a>
-                                {{ include('student/_delete_form.html.twig') }}
-                            </td>
-                        </tr>
+                    <div class="col-10 col-lg-5 m-1 mx-auto">
+                        <div class="card h-100 shadow p-3 round">
+                            <div class="row g-0 providers h-100">
+                                <div class="d-flex flex-column align-items-center col-md-5 h-100">
+                                    <img class="img-fluid round" src="{{ asset('uploads/' ~ student.picture) }}" alt="Photo de profil" style="max-height: 150px">
+                                    <div class="col-12 mt-auto">{{ include('student/_delete_form.html.twig') }}</div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="d-flex flex-column h-100">
+                                        <h3 class="card-title text-center">{{ student.lastname }} {{ student.firstname }}</h3>
+                                        <h5 class="card-title">{{ student.cursus.name }}</h5>
+                                        <p> <span class="card-text">{{ student.city }}</span> <span class="card-text" style="color:#D56F3E; font-weight:bold">{% if(student.longitude == 0) %} Ville inconnue {% endif %}</span></p>
+                                        <p class="card-text">
+                                            {% if student.schoolId is not null %}
+                                                <a class="text-secondary fw-bold" href="{{ path('school_show',{'id':student.id,'school':student.schoolId }) }}">{{ student.schoolName }}</a>
+                                            {% endif %}
+                                        </p>
+                                        <div class="d-flex mt-auto">
+                                            <div class="col-12"><a class="btn btn-primary  btn-cs btn-small" href="{{ path('school_list',{'id':student.id}) }}">Voir les écoles</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% else %}
-                        <tr>
-                            <td colspan="5">no records found</td>
-                        </tr>
+                            <h4>Aucun profil dans votre compte.</h4>
                     {% endfor %}
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
