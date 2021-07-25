@@ -66,9 +66,8 @@
                     </div>
                     <div>
                   <form action="" method="post" class="d-flex align-items-center">
-                    <input type="hidden" name="school" value="{{ school.fields.nom_etablissement }}"/>
-                    <input type="hidden" name="schoolId" value="{{ school.fields.identifiant_de_l_etablissement }}"/>
-                    <input class="btn btn-primary btn-cs mt-0 w-50 mx-auto" type="submit" value="Choisir cette école" />
+                      <input type="hidden" name="_token" value="{{ csrf_token('school' ~ student.id) }}">
+                      <input class="btn btn-primary btn-cs mt-0 w-50 mx-auto" type="submit" value="Choisir cette école" />
                   </form>
                     </div>
                 </div>
