@@ -31,7 +31,7 @@
             </div>
             <div class="d-flex col-lg-8 vh-100 overflow-scroll">
                 <div class="d-flex flex-column col-11 m-auto">
-                    <h1 class="text-center text-primary">Profils</h1>
+                    <h1 class="text-center text-primary">Liste des écoles</h1>
                     {% for school in schools.records %}
                         <div class="col-sm-12 mb-3">
                             <div class="card h-100 shadow p-3 font-form" style="border-radius: 30px; border: #FFFFFF solid 4px">
@@ -56,9 +56,6 @@
                         <h4>Pas d'école trouvée</h4>
                     {% endfor %}
                 </div>
-{#                <div class="shcool-phon">#}
-{#                    <a class="btn btn-secondary btn-css mx-auto mt-3" href="{{ path('student_index') }}">Retour</a>#}
-{#                </div>#}
             </div>
         </div>
     </div>
