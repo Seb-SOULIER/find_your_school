@@ -14,11 +14,21 @@ class Api
         $lon = $student->getLongitude();
         $dist = 5000;
         $etablissement = $student->getCursus()->getEtablissement();
+        $elementaire = 'ECOLE DE NIVEAU ELEMENTAIRE';
+
+        if ($etablissement === 'Maternelle'){
+            $elementaire = 'ECOLE MATERNELLE';
+            $etablissement = 'Ecole';
+        }
 
         $url = "https://data.education.gouv.fr/api/records/1.0/search/"
                 ."?dataset=fr-en-annuaire-education&q=&rows=100"
-                ."&geofilter.distance=".$lat.",".$lon.",".$dist // Distance par rapport a des coordonnées
-                ."&refine.type_etablissement=".$etablissement; // Collège Lycée Ecole
+                ."&geofilter.distance=" . $lat . "," . $lon . "," . $dist // Distance par rapport a des coordonnées
+                ."&refine.type_etablissement=" . $etablissement;  // Collège Lycée Ecole
+
+        if($etablissement === 'Ecole') {
+            $url = $url."&refine.libelle_nature=" . $elementaire;
+        }
         return $this->getResponse($url);
     }
 
