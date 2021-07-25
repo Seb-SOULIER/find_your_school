@@ -38,7 +38,9 @@
         </div>
     </div>
     <div class="d-flex flex-column">
-        <button class="btn btn-secondary btn-cs mx-auto mt-3" type="submit">{{ button_label|default('Ajouter') }}</button>
+        <button class="btn btn-secondary btn-cs mx-auto mt-3" type="submit">
+            {{ button_label|default('Ajouter') }}
+        </button>
         <a class="btn btn-color btn-css mx-auto mt-3" href="{{ path('app_logout') }}">Déconnection</a>
     </div>
     {{ form_end(form) }}
