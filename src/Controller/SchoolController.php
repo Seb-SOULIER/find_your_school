@@ -35,9 +35,9 @@ class SchoolController extends AbstractController
             }
         }
 
-        if ($request->request->get('school')){
-            $student->setSchoolName($request->request->get('school'));
-            $student->setSchoolId($request->request->get('schoolId'));
+        if ($this->isCsrfTokenValid('school'.$student->getId(), $request->request->get('_token'))) {
+            $student->setSchoolName($school['fields']['nom_etablissement']);
+            $student->setSchoolId($school['fields']['identifiant_de_l_etablissement']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             $this->addFlash('success',
@@ -45,7 +45,6 @@ class SchoolController extends AbstractController
                 . ' ajouter à ' . $student->getLastname()
                 . " " . $student->getFirstname());
             return $this->redirectToRoute('student_index');
-//            $student['schoolName']. . $student['lastname']. $student['firstname']
         }
 
         return $this->render('school/show.html.twig', [

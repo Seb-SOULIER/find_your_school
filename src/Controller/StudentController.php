@@ -37,7 +37,9 @@ class StudentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($student);
             $entityManager->flush();
-
+            if($locate[0]['lat'] ==0 & $locate[0]['lon']==0) {
+                $this->addFlash('danger','Ville inconnue');
+            }
             return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
         }
 
