@@ -29,15 +29,15 @@ class StudentController extends AbstractController
             $student->setUserId($this->getUser());
             $locate = $api->localize($form->get('city')->getData());
             if (empty($locate)) {
-               $locate[0]['lat']=0;
-               $locate[0]['lon']=0;
+               $locate[0]['lat'] = 0;
+               $locate[0]['lon'] = 0;
             }
             $student->setLatitude($locate[0]['lat']);
             $student->setLongitude($locate[0]['lon']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($student);
             $entityManager->flush();
-            if($locate[0]['lat'] ==0 & $locate[0]['lon']==0) {
+            if($locate[0]['lat'] === 0 & $locate[0]['lon'] === 0) {
                 $this->addFlash('danger','Ville inconnue');
             }
             return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
@@ -64,7 +64,7 @@ class StudentController extends AbstractController
      */
     public function delete(Request $request, Student $student): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$student->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $student->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($student);
             $entityManager->flush();

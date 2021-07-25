@@ -5,7 +5,8 @@
 {% block body %}
     <div class="container-fluid h-100">
         <div class="d-flex flex-column-reverse flex-lg-row page h-100">
-            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth text-center justify-content-center align-items-center">
+            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth
+             text-center justify-content-center align-items-center">
                 {% include 'student/_form.html.twig' %}
             </div>
             <div class="d-flex col-lg-8">
@@ -17,21 +18,38 @@
                         <div class="card h-100 shadow p-3 round">
                             <div class="row g-0 providers h-100">
                                 <div class="d-flex flex-column align-items-center col-md-5 h-100">
-                                    <img class="img-fluid round" src="{{ asset('uploads/' ~ student.picture) }}" alt="Photo de profil" style="max-height: 150px">
+                                    <img class="img-fluid round" src="{{ asset('uploads/' ~ student.picture) }}"
+                                         alt="Photo de profil" style="max-height: 150px">
                                     <div class="col-12 mt-auto">{{ include('student/_delete_form.html.twig') }}</div>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="d-flex flex-column h-100">
-                                        <h3 class="card-title text-center">{{ student.lastname }} {{ student.firstname }}</h3>
+                                        <h3 class="card-title text-center">
+                                            {{ student.lastname }} {{ student.firstname }}
+                                        </h3>
                                         <h5 class="card-title">{{ student.cursus.name }}</h5>
-                                        <p> <span class="card-text">{{ student.city }}</span> <span class="card-text" style="color:#D56F3E; font-weight:bold">{% if(student.longitude == 0) %} Ville inconnue {% endif %}</span></p>
+                                        <p>
+                                            <span class="card-text">{{ student.city }}</span>
+                                            <span class="card-text" style="color:#D56F3E; font-weight:bold">
+                                                {% if(student.longitude == 0) %} Ville inconnue {% endif %}
+                                            </span>
+                                        </p>
                                         <p class="card-text">
                                             {% if student.schoolId is not null %}
-                                                <a class="text-secondary fw-bold" href="{{ path('school_show',{'id':student.id,'school':student.schoolId }) }}">{{ student.schoolName }}</a>
+                                                <a class="text-secondary fw-bold"
+                                                   href="{{ path('school_show',
+                                                       {'id':student.id,'school':student.schoolId }) }}">
+                                                    {{ student.schoolName }}
+                                                </a>
                                             {% endif %}
                                         </p>
                                         <div class="d-flex mt-auto">
-                                            <div class="col-12"><a class="btn btn-primary  btn-cs btn-small" href="{{ path('school_list',{'id':student.id}) }}">Voir les écoles</a></div>
+                                            <div class="col-12">
+                                                <a class="btn btn-primary  btn-cs btn-small"
+                                                   href="{{ path('school_list',{'id':student.id}) }}">
+                                                    Voir les écoles
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

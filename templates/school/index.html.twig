@@ -5,20 +5,30 @@
 {% block body %}
     <div class="container-fluid h-100">
         <div class="d-flex flex-column-reverse flex-lg-row page h-100">
-            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth text-center justify-content-center align-items-center school-phone">
+            <div class="d-flex flex-column col-lg-4 col-12 menu-rigth
+             text-center justify-content-center align-items-center school-phone">
                 <div class="card h-50 shadow p-3 w-75 round">
-                    <div class="col h-75 d-flex align-items-center justify-content-center flex-column font-form w-100" style="border-radius: 30px">
+                    <div class="col h-75 d-flex align-items-center justify-content-center
+                     flex-column font-form w-100" style="border-radius: 30px">
                         <div class="col-md-5">
-                            <img class="img-fluid" src="{{ asset('uploads/' ~ student.picture) }}" alt="Photo de profil" style="border-radius:20px; max-height: 150px">
+                            <img class="img-fluid" src="{{ asset('uploads/' ~ student.picture) }}"
+                                 alt="Photo de profil" style="border-radius:20px; max-height: 150px">
                         </div>
                         <div class="col-md-7">
                                 <h3 class="card-title text-center">{{ student.lastname }} {{ student.firstname }}</h3>
                                 <h5 class="card-title">{{ student.cursus.name }}</h5>
-                                <p> <span class="card-text">{{ student.city }}</span>
-                                    <span class="card-text" style="color:#D56F3E; font-weight:bold">{% if(student.longitude == 0) %} Ville inconnue {% endif %}</span></p>
+                                <p>
+                                    <span class="card-text">{{ student.city }}</span>
+                                    <span class="card-text fw-bold" style="color:#D56F3E">
+                                        {% if(student.longitude == 0) %} Ville inconnue {% endif %}
+                                    </span>
+                                </p>
                                 <p class="card-text">
                                     {% if student.schoolId is not null %}
-                                        <a class="text-secondary" style="font-weight: bold" href="{{ path('school_show',{'id':student.id,'school':student.schoolId }) }}">{{ student.schoolName }}</a>
+                                        <a class="text-secondary fw-bold"
+                                           href="{{ path('school_show',{'id':student.id,'school':student.schoolId }) }}">
+                                            {{ student.schoolName }}
+                                        </a>
                                     {% endif %}
                                 </p>
                         </div>
